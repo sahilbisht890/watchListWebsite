@@ -14,5 +14,6 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# This is the initial paege , you can search the movie and change page too.
+![Screenshot (4)](https://github.com/user-attachments/assets/14f113f7-7fcf-4966-b1cc-895416944590)
+
