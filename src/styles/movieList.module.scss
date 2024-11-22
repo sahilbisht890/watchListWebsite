@@ -1,8 +1,3 @@
-.movieCard {
-    :global {
-
-    }
-}
 
 .movieListContainer {
     :global {
@@ -48,6 +43,7 @@
             top: 1px;
             text-align: right;
         }
+
         .bookmark-icon{
             font-size:35px ;
             color: rgb(82, 71, 71);
@@ -60,6 +56,16 @@
         }
         .movieInfo {
             cursor:  pointer !important;
+        }
+        .selectedIcon {
+            position:absolute ;
+            right: -1px;
+            top: -1px;
+            text-align: right;
+            cursor: pointer;
+        }
+        .selectedIcon svg {
+            background-color: white !important;
         }
     }
 }
@@ -99,3 +105,37 @@
       }
 
 }
+
+@media only screen and (max-width: 768px) {
+    .movieListContainer {
+        margin-top: 30px;
+        :global {
+            .cardHeading {
+                font-size: 20px !important;
+            }
+            .websitePointsLabel {
+                font-size: 14px !important;
+            }
+
+            .moviesList > div {
+                width:45% !important;
+            }
+        }
+    }
+    .movieDetails {
+        :global  {
+            .movieInfo > div {
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                gap:0px !important;
+                margin-bottom: 10px !important;
+            }
+            .infoLabel , .infoValue , .moviePlot {
+                font-size: 14px !important;
+            }
+            
+        }
+    }
+  }
+  

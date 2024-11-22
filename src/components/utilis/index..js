@@ -115,6 +115,41 @@ export const createWatchList = (userEmail, watchListName, about) => {
   return true ;
 };
 
+export const removeFromWatchList = (userEmail, watchListIndex, imdbID) => {
+  const watchListsData = JSON.parse(localStorage.getItem('watchLists')) || {};
+
+  if (!watchListsData[userEmail]) {
+    toast.error("User doesn't have any watchlists created.");
+    return false;
+  }
+
+  const userWatchLists = watchListsData[userEmail];
+
+  if (!userWatchLists[watchListIndex]) {
+    toast.error("Invalid watchlist index!");
+    return false;
+  }
+
+  const watchList = userWatchLists[watchListIndex];
+
+  const movieIndex = watchList.movies.findIndex((movie) => movie.imdbID === imdbID);
+
+  if (movieIndex === -1) {
+    toast.error('Movie not found in the watchlist!');
+    return false;
+  }
+
+  watchList.movies.splice(movieIndex, 1);
+
+  toast.success('Movie removed from your watchlist successfully!');
+  localStorage.setItem('watchLists', JSON.stringify(watchListsData));
+
+  return true;
+};
+
+
+
+
 
 
 

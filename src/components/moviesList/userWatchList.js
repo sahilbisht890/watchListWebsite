@@ -11,7 +11,6 @@ import { useParams } from "react-router-dom";
 const WatchListPage = () => {
   const [page, setPage] = useState(1);
   const { listIndex } = useParams();
-  console.log('-------o>>',listIndex);
   const { userEmail, setUserEmail, userWatchListData, setUserWatchListData } = useGlobalContext();
   const [moviesList, setMovieList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,6 +20,9 @@ const WatchListPage = () => {
     watchListName : '',
     about : ''
  })
+
+ const [updateContent , setUpdateContent] = useState(1);
+
 
   useEffect(() => {
     const temp = userWatchListData[listIndex];
@@ -34,13 +36,23 @@ const WatchListPage = () => {
     setMovieList(tempMovieList);
     setPaginatedMovieList(tempMovieList.slice(0 , 10));
     setTotalMovieList(tempMovieList.length);
-  }, [listIndex]);
+  }, [listIndex , updateContent]);
 
 
   const handlePageChange = (page) => {
     setPaginatedMovieList(moviesList.slice((10*page-1) , 10*page))
     setPage(page);
   };
+
+
+  const handleRemoveMovie = (id) => {
+    const temp = [...moviesList];
+    const filterList = temp.filter((movie) => movie.imdbID !== id);
+    setMovieList(filterList); 
+    setPaginatedMovieList(filterList.slice((10 * (page - 1)), 10 * page));
+    setTotalMovieList(filterList.length);
+  };
+  
 
   return (
     <>
@@ -63,9 +75,9 @@ const WatchListPage = () => {
 
         {totalMovieList > 0 && (
           <div className="d-flex flex-column gap-2 mt-5">
-            <div className="mt-3 d-flex flex-wrap moviesList justify-content-between">
+            <div className="mt-3 d-flex flex-wrap moviesList gap-4">
               {paginatedMovieList.map((movieData, index) => (
-                <MovieCard movieData={movieData} key={index} />
+                <MovieCard movieData={movieData} view={"watchlist"} index={index} key={index} handleRemoveMovie={handleRemoveMovie}/>
               ))}
             </div>
             {totalMovieList > 10 && !loading && (

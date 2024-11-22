@@ -6,10 +6,16 @@ import LoginFormModal from "../loginForm/index";
 import { useGlobalContext } from "../../globalProvider";
 import { useState } from "react";
 import WatchList from "../watchListForm/watchList";
+import {
+  IconSquareCheckFilled
+} from "@tabler/icons-react";
+import { useParams } from "react-router-dom";
+import { removeFromWatchList } from "../utilis/index.";
 
 
-const MovieCard = ({ movieData }) => {
+const MovieCard = ({ movieData , view='normallist' , index, handleRemoveMovie}) => {
   const navigate = useNavigate();
+  const { listIndex } = useParams();
   const { userEmail, setUserEmail } = useGlobalContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [buttonText, setButtonText] = useState("Sign In");
@@ -27,6 +33,11 @@ const MovieCard = ({ movieData }) => {
       setSelectedMovie(movieData);
       setIsWatchListModalOpen(true);
     }
+  }
+
+  const handleRemoveBookmark = (id) => {
+       removeFromWatchList(userEmail , listIndex , id );
+       handleRemoveMovie(id);
   }
   return (
     <>
@@ -49,6 +60,9 @@ const MovieCard = ({ movieData }) => {
               alt={movieData.Title}
             />
           )}
+            {
+            view !== 'watchlist' ? 
+          
           <div className="bookmarkIcon" onClick={() =>handleBookmarkClick(movieData)}>
             <Tooltip title="Add to WatchList">
               {/* <Image src={'/images/icons8-add-bookmark.svg'} width={'80%'} preview={false} className="cursor-pointer"/> */}
@@ -69,7 +83,12 @@ const MovieCard = ({ movieData }) => {
                 />
               </svg>
             </Tooltip>
+          </div> :          <div className="selectedIcon" onClick={() => handleRemoveBookmark(movieData.imdbID)}>
+            <Tooltip title="Remove From WatchList">
+            <IconSquareCheckFilled size={27} fill='#1fb141' />
+            </Tooltip>
           </div>
+            }
         </div>
         <div className="p-2 movieInfo" onClick={handleMovieDetails}>
           <div className={`fw-medium movieTitle`}>{movieData.Title}</div>

@@ -54,7 +54,7 @@
     border-color:  rgb(167 9 9);
 }
 
-.ant-spin .ant-spin-dot-holder,.watchlistHeading{
+.ant-spin .ant-spin-dot-holder,.watchlistHeading , .movieInfo:hover .movieTitle{
     color : rgb(167 9 9);
 }
 .ant-pagination .ant-pagination-item-active , .ant-select-selector , .ant-input-outlined:focus-within {

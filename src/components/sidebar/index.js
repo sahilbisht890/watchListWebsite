@@ -23,13 +23,31 @@ const Sidebar = () => {
   const [buttonText, setButtonText] = useState("Sign In");
   const [updateContent, setUpdateContent] = useState(1);
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+  const [filteredWatchList , setFilterWatchList]  = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
 
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (searchTerm) {
+        const filteredData = userWatchListData.filter((item) =>
+          item.watchListName.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilterWatchList(filteredData);
+      } else {
+        setFilterWatchList(userWatchListData);
+      }
+    }, 300);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm, userWatchListData]);
 
 
   useEffect(() => {
         const list = getWatchList(userEmail);
         setUserWatchListData(list);
+        setFilterWatchList(list);
   } , [userEmail , updateContent])
 
   const handleLogout = () => {
@@ -42,9 +60,15 @@ const Sidebar = () => {
      setButtonText(key);
      showModal();
   };
-  const handleWatchListRoute = (index) => {
-    navigate(`/watchList/${index}`);
-  }
+
+    const handleWatchListRoute = (data) => {
+      const index = userWatchListData.findIndex(
+        (listData) => listData.watchListName === data.watchListName
+      );
+      
+      navigate(`/watchList/${index}`);
+    };
+
 
 
   const menu = (
@@ -102,7 +126,10 @@ const Sidebar = () => {
           </div>
           <div className="mt-2">
             <Input
-              placeholder="Search"
+              placeholder="Search WatchList"
+              disabled={!userWatchListData || userWatchListData.length === 0}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               prefix={
                 <IconSearch
                   size={18}
@@ -126,10 +153,10 @@ const Sidebar = () => {
               <div className="d-flex justify-content-center watchlistHeading fw-bold">My WatchList</div>
               <div className="d-flex gap-1 flex-column mt-2 watchListContainerDiv">
               {
-                userWatchListData?.length ? (<>
+                filteredWatchList?.length ? (<>
                 {
-                  userWatchListData?.map((data , index) =>
-                     (<div key={index} onClick={() => handleWatchListRoute(index)} className="watchListDiv fw-medium rounded p-1 ps-2">{data.watchListName}</div>))
+                  filteredWatchList?.map((data , index) =>
+                     (<div key={index} onClick={() => handleWatchListRoute(data)} className="watchListDiv fw-medium rounded p-1 ps-2">{data.watchListName}</div>))
                 }
                 </>) : <div className="d-flex justify-content-center fw-medium text-primary">No WatchList Added</div>
               }

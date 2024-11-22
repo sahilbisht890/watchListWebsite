@@ -4,23 +4,55 @@ import { useEffect, useState } from "react";
 import style from "../../styles/movieList.module.scss";
 import { Image, Tooltip, Spin } from "antd";
 import { IconStarFilled } from "@tabler/icons-react";
+import WatchList from "../watchListForm/watchList";
+import LoginFormModal from "../loginForm";
+import { useGlobalContext } from "../../globalProvider";
 
 const MovieDetails = () => {
   const { imdbID } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { userEmail} = useGlobalContext();
+
+  
+ const [isModalVisible, setIsModalVisible] = useState(false);
+ const [buttonText, setButtonText] = useState("Sign In");
+ const [isWatchListModalOpen, setIsWatchListModalOpen] = useState(false);
+ const [selectedMovie , setSelectedMovie] = useState({});
 
   useEffect(() => {
     setLoading(true);
     fetchMoviesDetails(imdbID).then((movieData) => {
-      console.log("data", movieData);
       setMovieDetails(movieData);
+      const temp = {
+        "Title": movieData?.Title,
+        "Year": movieData?.Year,
+        "imdbID": movieData?.imdbID,
+        "Type": "movie",
+        "Poster": movieData?.Poster
+      }
+      setSelectedMovie(temp);
       setLoading(false);
     });
   }, [imdbID]);
 
+  const handleBookmarkClick = ( ) => {
+    if(!userEmail){
+      setIsModalVisible(true);
+    }else {
+      setIsWatchListModalOpen(true);
+    }
+  }
+
   return (
     <>
+      <WatchList isModalOpen ={isWatchListModalOpen} setIsModalOpen ={setIsWatchListModalOpen} movieData={selectedMovie} />
+      <LoginFormModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        buttonText={buttonText}
+        setButtonText={setButtonText}
+      />
       {loading ? (
         <div className="loading-overlay">
           <div className="loading">
@@ -51,7 +83,7 @@ const MovieDetails = () => {
                     alt={movieDetails?.Title}
                   />
                 )}
-                <div className="bookmarkIcon">
+                <div className="bookmarkIcon" onClick={handleBookmarkClick}>
                   <Tooltip title="Add to WatchList">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

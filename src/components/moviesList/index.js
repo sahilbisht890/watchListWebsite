@@ -64,18 +64,18 @@ const MovieListPage = () => {
           <div className="cardHeading">
             Welcome to <span className="mainColor">WatchLists</span>
           </div>
-          <div className="d-flex gap-3 text-white websitePoints mt-3">
+          <div className="d-flex gap-3 text-white flex-wrap websitePoints mt-3">
             <span
               className="d-flex align-items-center gap-2 btn cursor-pointer"
               onClick={handleButtonClick}
             >
-              <IconSearch /> Browse movies
+              <IconSearch /><div className='websitePointsLabel'>Browse movies</div> 
             </span>
             <span className="d-flex align-items-center gap-2">
-              <IconDeviceTvFilled /> Add them to WatchList
+              <IconDeviceTvFilled /> <div className='websitePointsLabel'>Add movies to watchList</div>
             </span>
             <span className="d-flex align-items-center gap-2">
-              <IconShare /> Share with your friends
+              <IconShare /><div className='websitePointsLabel'>Share with your friends</div>
             </span>
           </div>
         </div>
