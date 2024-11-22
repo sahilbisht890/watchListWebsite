@@ -33,6 +33,8 @@ const WatchList = ({ isModalOpen, setIsModalOpen, movieData}) => {
    const flag =  addToWatchList(movieData,userEmail , index);
    if(flag){
     setIsModalOpen(false);
+    const tempWatchList = getWatchList(userEmail);
+    setUserWatchListData(tempWatchList);
    }
   }
 

@@ -16,7 +16,7 @@ const MovieDetails = () => {
 
   
  const [isModalVisible, setIsModalVisible] = useState(false);
- const [buttonText, setButtonText] = useState("Sign In");
+ const [buttonText, setButtonText] = useState("logIn");
  const [isWatchListModalOpen, setIsWatchListModalOpen] = useState(false);
  const [selectedMovie , setSelectedMovie] = useState({});
 
