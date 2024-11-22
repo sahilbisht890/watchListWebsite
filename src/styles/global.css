@@ -1,0 +1,99 @@
+.App {
+    height: 100vh !important;
+}
+
+*{
+    box-sizing: border-box !important;
+}
+
+.mainColor {
+    color : rgb(243 63 64) !important
+}
+.bgMainColor {
+    background-color: rgb(243 63 64) !important
+}
+
+/* Overlay style */
+.loading-overlay {
+    position: fixed; /* Sticks the overlay to the screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    z-index: 9999; /* Makes sure the overlay is on top */
+    pointer-events: none; /* Prevents clicks on the overlay itself */
+  }
+  
+  /* Loading spinner style */
+  .loading-overlay .loading {
+    pointer-events: all; /* Enables interaction with the spinner */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
+.websiteName {
+    font-size: 30px !important;
+    font-family: Arial, sans-serif;
+}
+
+.mainContainerSidebar {
+    border : 1px solid lightgray !important
+}
+
+.ant-btn-variant-solid , .ant-btn-color-default , .ant-btn,.bgFooterColor{
+    background-color: rgb(167 9 9) !important;
+}
+
+.ant-input-outlined:hover , .ant-input-outlined:focus{
+    border-color:  rgb(167 9 9);
+}
+
+.ant-spin .ant-spin-dot-holder,.watchlistHeading{
+    color : rgb(167 9 9);
+}
+.ant-pagination .ant-pagination-item-active , .ant-select-selector , .ant-input-outlined:focus-within {
+    border-color: rgb(167 9 9) !important;
+} 
+.modalOptionBelow {
+    cursor: pointer !important;
+}
+.modalOptionBelow:hover {
+    transform: scale(1.1);
+}
+.ant-btn-color-default , .ant-btn {
+    color : white !important
+}
+
+.ant-dropdown .ant-dropdown-menu , .ant-dropdown .ant-dropdown-arrow:before {
+background-color: #ffcbcb !important;
+}
+.ant-modal-title {
+ text-align: center !important;
+ font-size: 20px !important;
+} 
+.h-40 {
+    height: 40% !important;
+}
+
+.h-90{
+    height: 90% !important;
+}
+
+.h-60{
+    height: 60% !important;
+}
+
+.cursorPointer {
+    cursor: pointer !important;
+    padding: 4px 8px;
+}
+.sidebarTopContainer {
+    min-height: 30%;
+    max-height: 40%;
+}
