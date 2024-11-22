@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 import MovieListPage from '../moviesList/index';
 import MovieDetails from '../moviesList/movieDetails';
 import SideBar from '../sidebar/index'
@@ -6,7 +6,6 @@ import WatchListPage from '../moviesList/userWatchList';
 const HomePage = () => {
 
     return (
-        <Router>
             <div className="homePageContainer p-4 h-100">
                 <div className="row w-100 h-100">
                     <div className="col-md-3 h-100">
@@ -21,7 +20,6 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-        </Router>
     );
 };
 
