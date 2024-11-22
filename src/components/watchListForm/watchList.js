@@ -63,7 +63,7 @@ const WatchList = ({ isModalOpen, setIsModalOpen, movieData}) => {
           >
             <div className="d-flex flex-column  justify-content-center align-items-center">
               <Image
-                src={"/images/icons8-m-100.png"}
+                src={`${process.env.PUBLIC_URL}/images/icons8-m-100.png`}
                 width={70}
                 preview={false}
               />
@@ -82,7 +82,7 @@ const WatchList = ({ isModalOpen, setIsModalOpen, movieData}) => {
             >
               <div className="d-flex justify-content-center">
                 <Image
-                  src={"/images/icons8-m-100.png"}
+                  src={`${process.env.PUBLIC_URL}/images/icons8-m-100.png`}
                   width={70}
                   preview={false}
                 />

@@ -42,7 +42,7 @@ const MovieDetails = () => {
             <div className="col-md-3">
               <div className="position-relative d-flex align-items-center justify-content-center h-100">
                 {movieDetails?.Poster === "N/A" ? (
-                  <Image src={"/images/icons8-video-100.png"} preview={false} />
+                  <Image src={`${process.env.PUBLIC_URL}/images/icons8-video-100.png`} preview={false} />
                 ) : (
                   <Image
                     src={movieDetails?.Poster}
@@ -131,7 +131,7 @@ const MovieDetails = () => {
                 {movieDetails?.imdbRating !== "N/A" && (
                   <div className="d-flex gap-2 align-items-center">
                     <div>
-                      <Image src="/images/icons8-imdb-48.png" preview={false} />
+                      <Image src={`${process.env.PUBLIC_URL}/images/icons8-imdb-48.png`} preview={false} />
                     </div>
                     <div className="infoValue fw-medium">
                       <IconStarFilled size={18} color="#f5c518" />{" "}

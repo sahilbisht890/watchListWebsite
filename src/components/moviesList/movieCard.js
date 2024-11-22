@@ -40,7 +40,7 @@ const MovieCard = ({ movieData }) => {
       <div className={`${style.movieCard} mb-3 rounded cursor-pointer`} >
         <div className="moviePosterDiv d-flex align-items-center justify-content-center position-relative">
           {movieData?.Poster === "N/A" ? (
-            <Image src={"/images/icons8-video-100.png"} preview={false} />
+            <Image src={`${process.env.PUBLIC_URL}/images/icons8-video-100.png`} preview={false} />
           ) : (
             <Image
               src={movieData?.Poster}

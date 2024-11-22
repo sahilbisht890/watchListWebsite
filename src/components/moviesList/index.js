@@ -114,7 +114,7 @@ const MovieListPage = () => {
             className={`d-flex flex-column gap-2 align-items-center justify-content-center mt-5 pt-5 ${style.noDataContainer}`}
           >
             <Image
-              src={"/images/noData.jpg"}
+              src={`${process.env.PUBLIC_URL}/images/noData.jpg`}}
               className="rounded"
               width={"18%"}
               preview={false}
