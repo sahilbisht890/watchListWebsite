@@ -18,9 +18,9 @@ import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
   const navigate = useNavigate();
-  const { userEmail, setUserEmail, userWatchListData, setUserWatchListData } = useGlobalContext();
+  const { userKey, setUserKey, userWatchListData, setUserWatchListData } = useGlobalContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [buttonText, setButtonText] = useState("Sign In");
+  const [buttonText, setButtonText] = useState("unlock");
   const [updateContent, setUpdateContent] = useState(1);
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
   const [filteredWatchList , setFilterWatchList]  = useState([]);
@@ -45,13 +45,13 @@ const Sidebar = () => {
 
 
   useEffect(() => {
-        const list = getWatchList(userEmail);
+        const list = getWatchList(userKey);
         setUserWatchListData(list);
         setFilterWatchList(list);
-  } , [userEmail , updateContent])
+  } , [userKey , updateContent])
 
   const handleLogout = () => {
-    setUserEmail('');
+    setUserKey('');
     navigate(`/`);
     toast.success('Logged out successfully.');
   };
@@ -73,17 +73,17 @@ const Sidebar = () => {
 
   const menu = (
     <Menu>
-      {userEmail ? (
+      {userKey ? (
         <Menu.Item key="logout" onClick={handleLogout}>
           Log out
         </Menu.Item>
       ) : (
         <>
-          <Menu.Item key="logIn" onClick={() => handleLogin('logIn')}>
-            Log In
+          <Menu.Item key="unlock" onClick={() => handleLogin('unlock')}>
+            Unlock
           </Menu.Item>
-          <Menu.Item key="signUp" onClick={() => handleLogin('signUp')}>
-            Sign Up
+          <Menu.Item key="create" onClick={() => handleLogin('create')}>
+            Create Passkey
           </Menu.Item>
         </>
       )}
@@ -95,10 +95,10 @@ const Sidebar = () => {
   };
 
   const handleCreateWatchList = () => {
-    if(userEmail){
+    if(userKey){
         setIsFormModalOpen(true);
     } else {
-       handleLogin('logIn');
+       handleLogin('unlock');
     }
   }
 
@@ -107,7 +107,7 @@ const Sidebar = () => {
       <WatchListForm
         isFormModalOpen={isFormModalOpen}
         setIsFormModalOpen={setIsFormModalOpen}
-        userEmail={userEmail}
+        userKey={userKey}
         updateContent={updateContent}
         setUpdateContent={setUpdateContent}
       />
@@ -124,22 +124,6 @@ const Sidebar = () => {
           <div className="websiteName fw-bold text-center mainColor">
             WatchLists
           </div>
-          <div className="mt-2">
-            <Input
-              placeholder="Search WatchList"
-              disabled={!userWatchListData || userWatchListData.length === 0}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              prefix={
-                <IconSearch
-                  size={18}
-                  style={{
-                    color: "rgba(0,0,0,.25)",
-                  }}
-                />
-              }
-            />
-          </div>
           <div className="bgMainColor d-flex gap-2  mt-4 rounded align-items-center  ps-2 cursorPointer" onClick={() => navigate(`/`)}>
             <IconHomeFilled size={18} color="white" />
             <div className="text-light">Home</div>
@@ -149,8 +133,24 @@ const Sidebar = () => {
             <div className="text-light">Create WatchList</div>
           </div>
           </div>
-          <div className={`${style.sidebarWatchListContainer} d-flex flex-column mt-2 h-60`}>
+          <div className={`${style.sidebarWatchListContainer} d-flex flex-column mt-2 h-60 watchListPanel`}>
               <div className="d-flex justify-content-center watchlistHeading fw-bold">My WatchList</div>
+              <div className="mt-2">
+                <Input
+                  placeholder="Search WatchList"
+                  disabled={!userWatchListData || userWatchListData.length === 0}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  prefix={
+                    <IconSearch
+                      size={18}
+                      style={{
+                        color: "rgba(255,255,255,0.85)",
+                      }}
+                    />
+                  }
+                />
+              </div>
               <div className="d-flex gap-1 flex-column mt-2 watchListContainerDiv">
               {
                 filteredWatchList?.length ? (<>
@@ -166,7 +166,7 @@ const Sidebar = () => {
         <div className="userLogin d-flex justify-content-between align-items-center bgFooterColor rounded  ps-2 m-1">
           <div className="d-flex align-items-center gap-2">
             <FaRegUserCircle size={20} color="white" />
-            <div className="text-light">{userEmail ? userEmail : "Guest"}</div>
+            <div className="text-light">{userKey ? "Unlocked" : "Locked"}</div>
           </div>
           <div className="">
             <Dropdown

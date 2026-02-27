@@ -41,27 +41,27 @@ export const fetchMoviesDetails = async (imbd) => {
   }
 };
 
-export const createNewAccount = (userEmail) => {
-  const existingEmails = JSON.parse(localStorage.getItem("userEmails")) || [];
-  const updatedEmails = [...existingEmails, userEmail];
-  localStorage.setItem("userEmails", JSON.stringify(updatedEmails));
+export const createNewAccount = (userKey) => {
+  const existingKeys = JSON.parse(localStorage.getItem("userPasskeys")) || [];
+  const updatedKeys = [...existingKeys, userKey];
+  localStorage.setItem("userPasskeys", JSON.stringify(updatedKeys));
 };
 
-export const userAlreadyPresentOrNot = (userEmail) => {
-  const existingEmails = JSON.parse(localStorage.getItem("userEmails")) || [];
-  if (existingEmails.includes(userEmail)) {
+export const userAlreadyPresentOrNot = (userKey) => {
+  const existingKeys = JSON.parse(localStorage.getItem("userPasskeys")) || [];
+  if (existingKeys.includes(userKey)) {
     return true;
   }
   return false;
 };
 
-export const addToWatchList = (movieData, userEmail, watchListIndex) => {
+export const addToWatchList = (movieData, userKey, watchListIndex) => {
   const watchListsData = JSON.parse(localStorage.getItem('watchLists')) || {};
-  if (!watchListsData[userEmail]) {
+  if (!watchListsData[userKey]) {
     toast.error("User doesn't have any watchlists created.");
     return false;
   }
-  const userWatchLists = watchListsData[userEmail];
+  const userWatchLists = watchListsData[userKey];
   if (!userWatchLists[watchListIndex]) {
     toast.error("Invalid watchlist index!"); 
     return false;
@@ -82,21 +82,27 @@ export const addToWatchList = (movieData, userEmail, watchListIndex) => {
   return true ;
 };
 
-export const getWatchList = (userEmail) => {
+export const getWatchList = (userKey) => {
   const watchListsData = JSON.parse(localStorage.getItem('watchLists')) || {};
-  if (!watchListsData[userEmail]) {
+  if (!watchListsData[userKey]) {
     return [];
   }
-  return watchListsData[userEmail];
+  return watchListsData[userKey];
 };
 
-export const createWatchList = (userEmail, watchListName, about) => {
+export const createWatchList = (userKey, watchListName, about) => {
   const watchListsData = JSON.parse(localStorage.getItem('watchLists')) || {};
-  if (!watchListsData[userEmail]) {
-    watchListsData[userEmail] = [];
+  if (!watchListsData[userKey]) {
+    watchListsData[userKey] = [];
   }
-  const isWatchListExists = watchListsData[userEmail].some(
-    (watchList) => watchList.watchListName.toLowerCase() === watchListName.toLowerCase()
+  const safeName = (watchListName || '').trim();
+  const safeAbout = (about || '').trim();
+  if (!safeName) {
+    toast.error('Watchlist title cannot be empty.');
+    return false;
+  }
+  const isWatchListExists = watchListsData[userKey].some(
+    (watchList) => watchList.watchListName.toLowerCase() === safeName.toLowerCase()
   );
 
   if (isWatchListExists) {
@@ -104,26 +110,26 @@ export const createWatchList = (userEmail, watchListName, about) => {
     return false;
   }
   const newWatchList = {
-    watchListName,
-    about,
+    watchListName: safeName,
+    about: safeAbout,
     movies: [],
   };
 
-  watchListsData[userEmail].unshift(newWatchList);
+  watchListsData[userKey].unshift(newWatchList);
   localStorage.setItem('watchLists', JSON.stringify(watchListsData));
   toast.success('Watchlist created successfully!');
   return true ;
 };
 
-export const removeFromWatchList = (userEmail, watchListIndex, imdbID) => {
+export const removeFromWatchList = (userKey, watchListIndex, imdbID) => {
   const watchListsData = JSON.parse(localStorage.getItem('watchLists')) || {};
 
-  if (!watchListsData[userEmail]) {
+  if (!watchListsData[userKey]) {
     toast.error("User doesn't have any watchlists created.");
     return false;
   }
 
-  const userWatchLists = watchListsData[userEmail];
+  const userWatchLists = watchListsData[userKey];
 
   if (!userWatchLists[watchListIndex]) {
     toast.error("Invalid watchlist index!");

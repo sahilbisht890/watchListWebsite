@@ -5,12 +5,12 @@ const GlobalContext = createContext();
 export const useGlobalContext = () => useContext(GlobalContext);
 
 export const GlobalProvider = ({ children }) => {
-  const [userEmail, setUserEmail] = useState('');
+  const [userKey, setUserKey] = useState('');
   const [userWatchListData, setUserWatchListData] = useState([]);
 
 
   return (
-    <GlobalContext.Provider value={{ userEmail, setUserEmail, userWatchListData, setUserWatchListData }}>
+    <GlobalContext.Provider value={{ userKey, setUserKey, userWatchListData, setUserWatchListData }}>
       {children}
     </GlobalContext.Provider>
   );

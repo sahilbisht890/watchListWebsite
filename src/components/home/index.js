@@ -6,18 +6,18 @@ import WatchListPage from '../moviesList/userWatchList';
 const HomePage = () => {
 
     return (
-            <div className="homePageContainer p-4 h-100">
-                <div className="row w-100 h-100">
-                    <div className="col-md-3 h-100">
+            <div className="homePageContainer">
+                <div className="homeGrid">
+                    <aside className="homeSidebar">
                         <SideBar/> 
-                    </div>
-                    <div className="col-md-9 h-100"> 
+                    </aside>
+                    <main className="homeMain"> 
                         <Routes>
                             <Route path="/" element={<MovieListPage />} />
                             <Route path="/details/:imdbID" element={<MovieDetails/>} />
                             <Route path="/watchList/:listIndex" element={<WatchListPage/>} />
                         </Routes>
-                    </div>
+                    </main>
                 </div>
             </div>
     );

@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 const WatchListPage = () => {
   const [page, setPage] = useState(1);
   const { listIndex } = useParams();
-  const { userEmail, setUserEmail, userWatchListData, setUserWatchListData } = useGlobalContext();
+  const { userKey, setUserKey, userWatchListData, setUserWatchListData } = useGlobalContext();
   const [moviesList, setMovieList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalMovieList, setTotalMovieList] = useState(0);
@@ -75,7 +75,7 @@ const WatchListPage = () => {
 
         {totalMovieList > 0 && (
           <div className="d-flex flex-column gap-2 mt-5">
-            <div className="mt-3 d-flex flex-wrap moviesList gap-4">
+            <div className="mt-3 moviesList">
               {paginatedMovieList.map((movieData, index) => (
                 <MovieCard movieData={movieData} view={"watchlist"} index={index} key={index} handleRemoveMovie={handleRemoveMovie}/>
               ))}

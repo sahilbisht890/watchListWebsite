@@ -8,12 +8,12 @@ import style from "../../styles/watchList.module.scss";
 const { Meta } = Card;
 
 const WatchList = ({ isModalOpen, setIsModalOpen, movieData}) => {
-  const { userEmail, setUserEmail, userWatchListData, setUserWatchListData } = useGlobalContext();
+  const { userKey, setUserKey, userWatchListData, setUserWatchListData } = useGlobalContext();
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
   const [updateContent, setUpdateContent] = useState(1);
 
   useEffect(() => {
-    const tempWatchList = getWatchList(userEmail);
+    const tempWatchList = getWatchList(userKey);
     setUserWatchListData(tempWatchList);
   }, [updateContent]);
 
@@ -30,10 +30,10 @@ const WatchList = ({ isModalOpen, setIsModalOpen, movieData}) => {
   };
 
   const handleAddToWatchList = (index) => {
-   const flag =  addToWatchList(movieData,userEmail , index);
+   const flag =  addToWatchList(movieData,userKey , index);
    if(flag){
     setIsModalOpen(false);
-    const tempWatchList = getWatchList(userEmail);
+    const tempWatchList = getWatchList(userKey);
     setUserWatchListData(tempWatchList);
    }
   }
@@ -43,7 +43,7 @@ const WatchList = ({ isModalOpen, setIsModalOpen, movieData}) => {
       <WatchListForm
         isFormModalOpen={isFormModalOpen}
         setIsFormModalOpen={setIsFormModalOpen}
-        userEmail={userEmail}
+        userKey={userKey}
         updateContent={updateContent}
         setUpdateContent={setUpdateContent}
       />
@@ -52,7 +52,7 @@ const WatchList = ({ isModalOpen, setIsModalOpen, movieData}) => {
         open={isModalOpen}
         onCancel={handleCloseModal}
         footer={null}
-        width={800}
+        width={520}
       >
         <div
           className={`d-flex flex-wrap justify-content-center w-100  align-items-center gap-4 ${style.watchListContainer}`}
@@ -60,7 +60,7 @@ const WatchList = ({ isModalOpen, setIsModalOpen, movieData}) => {
           <Card
             className="border border-danger"
             hoverable
-            style={{ width: "25%" }}
+            style={{ width: "42%" }}
             onClick={handleCreateNew}
           >
             <div className="d-flex flex-column  justify-content-center align-items-center">
@@ -79,7 +79,7 @@ const WatchList = ({ isModalOpen, setIsModalOpen, movieData}) => {
               className="border border-primary"
               key={index}
               hoverable
-              style={{ width: "25%" }}
+              style={{ width: "42%" }}
               onClick={() => handleAddToWatchList(index)}
             >
               <div className="d-flex justify-content-center">

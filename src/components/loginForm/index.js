@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal, Form, Input, Button} from "antd";
 import { toast } from 'react-hot-toast';
 import { createNewAccount , userAlreadyPresentOrNot} from "../utilis/index.";
@@ -13,59 +13,64 @@ const LoginFormModal = ({
 }) => {
   const [form] = Form.useForm();
 
-  const { userEmail, setUserEmail } = useGlobalContext();
+  const { userKey, setUserKey } = useGlobalContext();
   const handleCancel = () => {
     form.resetFields();
     setIsModalVisible(false);
-    setButtonText("logIn");
+    setButtonText("unlock");
 
   };
 
   const onFinish = (values) => {
-    const email = values.email;
-    const emailExists = userAlreadyPresentOrNot(email); 
+    const passkey = (values.passkey || "").trim();
+    const passkeyExists = userAlreadyPresentOrNot(passkey); 
   
-    if (buttonText === 'signUp') {
-      if (emailExists) {
-        toast.error('User with this email already exists.');
+    if (!passkey) {
+      toast.error('Passkey cannot be empty.');
+      return;
+    }
+
+    if (buttonText === 'create') {
+      if (passkeyExists) {
+        toast.error('This passkey already exists.');
       } else {
-        createNewAccount(email);
+        createNewAccount(passkey);
         handleCancel();
-        toast.success('Account created successfully.');
+        toast.success('Passkey created successfully.');
       }
     } else {
-      if (emailExists) {
-        setUserEmail(email);
-        toast.success('Logged in successfully!'); // Toast for successful login.
+      if (passkeyExists) {
+        setUserKey(passkey);
+        toast.success('Unlocked successfully!');
         handleCancel();
 
       } else {
-        toast.error('No account found with this email.');
+        toast.error('Passkey not found.');
       }
     }
   };
   
 
-  const switchToSignIn = () => {
-    setButtonText("logIn");
+  const switchToUnlock = () => {
+    setButtonText("unlock");
     form.resetFields();
 
   };
 
-  const switchToSignUp = () => {
-    setButtonText("signUp");
+  const switchToCreate = () => {
+    setButtonText("create");
     form.resetFields();
 
   };
 
   return (
     <>
-      <Modal
-        title={buttonText === "logIn" ? "Log In" : "Sign Up"}
+    <Modal
+        title={buttonText === "unlock" ? "Unlock" : "Create Passkey"}
         visible={isModalVisible}
         onCancel={handleCancel}
         footer={null}
-        width={350}
+        width={520}
       >
         <Form
           name="loginForm"
@@ -78,31 +83,31 @@ const LoginFormModal = ({
           <Form.Item
             label={
               <span>
-                Email<span style={{ color: "red" }}> *</span>
+                Passkey<span style={{ color: "red" }}> *</span>
               </span>
             }
-            name="email"
-            rules={[{ required: true, message: "Please input your email!" }]}
+            name="passkey"
+            rules={[{ required: true, message: "Please input your passkey!" }]}
           >
-            <Input placeholder="Enter your email" />
+            <Input.Password placeholder="Create or enter passkey" />
           </Form.Item>
           <div className="d-flex justify-content-center">
             <Button htmlType="submit">
-              {buttonText === "logIn" ? "Log In" : "Sign Up"}
+              {buttonText === "unlock" ? "Unlock" : "Create"}
             </Button>
           </div>
         </Form>
-        <div className="d-flex gap-2 mt-2 align-items-center">
+        <div className="d-flex gap-2 mt-2 align-items-center justify-content-center modalSwitchText">
           <div className="fw-medium">
-            {buttonText === "logIn"
-              ? "Don't have an account ? "
-              : "Already have an account ? "}
+            {buttonText === "unlock"
+              ? "Don't have a passkey ? "
+              : "Already have a passkey ? "}
           </div>
           <div
             className="text-primary cursor-pointer modalOptionBelow"
-            onClick={buttonText === "logIn" ? switchToSignUp : switchToSignIn}
+            onClick={buttonText === "unlock" ? switchToCreate : switchToUnlock}
           >
-            {buttonText === "logIn" ? "Sign Up" : "Log In"}
+            {buttonText === "unlock" ? "Create Passkey" : "Unlock"}
           </div>
         </div>
       </Modal>

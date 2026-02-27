@@ -1,141 +1,381 @@
-
 .movieListContainer {
-    :global {
-        .cardHeading {
-            font-size: 30px !important;
-        }
-        .websitePoints span{
-            border-radius: 6px ;
-            background-color:rgb(167 9 9);
-            color : white;
-            padding: 5px 8px;
-        }
-    
-        .websitePoints span:hover {
-            transform: scale(1.05);
-        }
-        .headingCard {
-            border : 1px solid rgb(243, 63, 64)
-        }
-        .moviesList > div {
-            width:18% !important;
-        }
+  background: linear-gradient(160deg, rgba(40, 52, 70, 0.98), rgba(34, 45, 62, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 20px 20px 26px;
+  box-shadow: 0 15px 45px rgba(4, 9, 18, 0.55);
+  height: 100%;
+  min-height: 100%;
+
+  :global {
+    .headingCard {
+      background: radial-gradient(120% 120% at 0% 0%, rgba(255, 122, 69, 0.2), transparent 55%),
+        linear-gradient(140deg, rgba(44, 58, 78, 0.95), rgba(36, 49, 68, 0.95));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(5, 10, 20, 0.5);
+      padding: 24px;
     }
+
+    .heroHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .heroHeaderText {
+      flex: 1 1 420px;
+    }
+
+    .heroSocials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .heroSocialLink {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .heroSocialLink:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 138, 91, 0.25);
+    }
+
+    .cardHeading {
+      font-size: 32px !important;
+      font-weight: 600;
+      color: #e6edf7;
+      letter-spacing: 0.2px;
+    }
+
+    .cardHeadingAbout {
+      color: #b3bfd4;
+      margin-top: 6px;
+      font-size: 15px;
+    }
+
+    .websitePoints {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .websitePoints span {
+      border-radius: 999px;
+      background: rgba(255, 107, 53, 0.12);
+      color: #ffb299;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 107, 53, 0.35);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .websitePoints span:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 107, 53, 0.2);
+    }
+
+    .movieSearch {
+      margin-top: 18px;
+      max-width: 720px;
+    }
+
+    .movieSearch .ant-input-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .movieSearch .ant-input-group .ant-input {
+      border-radius: 999px !important;
+      height: 46px;
+      line-height: 46px;
+      padding: 0 18px;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .movieSearch .ant-input-group .ant-input::placeholder {
+      line-height: 46px;
+    }
+
+    .movieSearch .ant-input-group .ant-input-affix-wrapper {
+      height: 46px !important;
+      border-radius: 999px !important;
+      padding: 0 14px !important;
+    }
+
+    .movieSearch .ant-input-group .ant-input-affix-wrapper input {
+      height: 44px;
+      line-height: 44px;
+      padding: 0 4px;
+    }
+
+    .movieSearch .ant-input-clear-icon {
+      color: #ffffff !important;
+    }
+
+    .movieSearch .ant-input-group .ant-input-group-addon {
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      width: auto;
+    }
+
+    .movieSearch .ant-input-search-button {
+      height: 46px !important;
+      border-radius: 999px !important;
+      padding: 0 22px !important;
+      min-width: 120px;
+    }
+
+    .moviesList {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+  }
 }
 
 .movieCard {
-    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.55555555);
+  background: linear-gradient(150deg, rgba(44, 58, 78, 0.98), rgba(36, 49, 68, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(6, 10, 20, 0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
-    :global{
-        .releaseYear {
-            font-size: 13px !important;
-            font-style: italic;
-        }
-        .movieTitle{
-            font-size: 15px;
-        }
-        .moviePosterDiv{
-            height: 245px;
-        }
-        .bookmarkIcon {
-            position:absolute ;
-            right: -3px;
-            top: 1px;
-            text-align: right;
-        }
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(6, 10, 20, 0.6);
+  }
 
-        .bookmark-icon{
-            font-size:35px ;
-            color: rgb(82, 71, 71);
-        }
-        .bookmarkIcon svg {
-            opacity: 0.7 !important;
-        }
-        .moviePosterDiv:hover svg , .bookmarkIcon:hover svg {
-            opacity: 1 !important;
-        }
-        .movieInfo {
-            cursor:  pointer !important;
-        }
-        .selectedIcon {
-            position:absolute ;
-            right: -1px;
-            top: -1px;
-            text-align: right;
-            cursor: pointer;
-        }
-        .selectedIcon svg {
-            background-color: white !important;
-        }
+  :global {
+    .moviePosterDiv {
+      height: 210px;
+      overflow: hidden;
+      background: rgba(34, 45, 62, 0.7);
     }
+
+    .moviePosterDiv img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    .bookmarkIcon,
+    .selectedIcon {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      text-align: right;
+      cursor: pointer;
+    }
+
+    .bookmarkIcon {
+      background: transparent;
+      border: none;
+      padding: 0;
+      display: block;
+    }
+
+    .bookmarkIcon svg {
+      opacity: 1 !important;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+    }
+
+    .moviePosterDiv:hover svg,
+    .bookmarkIcon:hover svg {
+      opacity: 1 !important;
+    }
+
+    .selectedIcon svg {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      border-radius: 6px;
+      padding: 2px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .shareIcon {
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      background: #ffffff;
+      color: #111827;
+      border-radius: 999px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .shareIcon:hover {
+      transform: translateY(-1px);
+    }
+
+    .movieInfo {
+      cursor: pointer !important;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .movieTitle {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e6edf7;
+    }
+
+    .releaseYear {
+      font-size: 13px !important;
+      font-style: italic;
+      color: #8c9ab4;
+    }
+
+    .imdbRating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 12px;
+      color: #fbbf24;
+    }
+
+    .imdbRating img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .imdbVotes {
+      color: #a3b2c7;
+      font-size: 11px;
+    }
+  }
 }
 
 .movieDetails {
-      :global {
-        .bookmarkIcon {
-            position:absolute ;
-            right: -3px;
-            top: 1px;
-            text-align: right;
-        }
-        .movieDetailsPoster  {
-            width: 25%;
-            height: 50%;
-        }
-        .movieTitle{
-            font-size: 32px;
-        }
-        .rRated {
-            padding: 0px 5px;
-            border : 1.5px solid black
-        }
-        .infoLabel {
-            font-size: 18px !important;
-            color : #534c4c
-        }
-        .infoValue{
-            font-size: 18px !important;
-        }
-        .moviePlot {
-            font-size: 17px;
-        }
-        .highlightInfo {
-            color :rgb(243, 63, 64) !important
-        }
-      }
+  background: linear-gradient(165deg, rgba(40, 52, 70, 0.98), rgba(34, 45, 62, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 20px;
 
+  :global {
+    .bookmarkIcon {
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      text-align: right;
+    }
+
+    .movieTitle {
+      font-size: 34px;
+      font-weight: 600;
+      color: #e6edf7;
+    }
+
+    .releaseYear {
+      color: #8c9ab4;
+    }
+
+    .rRated {
+      padding: 2px 8px;
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      color: #ffb299;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .infoLabel {
+      font-size: 16px !important;
+      color: #8c9ab4;
+      min-width: 120px;
+    }
+
+    .infoValue {
+      font-size: 16px !important;
+      color: #e6edf7;
+    }
+
+    .moviePlot {
+      font-size: 16px;
+      color: #c6d0e3;
+      margin-top: 6px;
+    }
+
+    .highlightInfo {
+      color: #ffb299 !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .movieListContainer {
+    :global {
+      .moviesList {
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 768px) {
-    .movieListContainer {
-        margin-top: 30px;
-        :global {
-            .cardHeading {
-                font-size: 20px !important;
-            }
-            .websitePointsLabel {
-                font-size: 14px !important;
-            }
+  .movieListContainer {
+    margin-top: 12px;
 
-            .moviesList > div {
-                width:45% !important;
-            }
-        }
-    }
-    .movieDetails {
-        :global  {
-            .movieInfo > div {
-                display: flex;
-                flex-direction: column;
-                justify-content: start;
-                gap:0px !important;
-                margin-bottom: 10px !important;
-            }
-            .infoLabel , .infoValue , .moviePlot {
-                font-size: 14px !important;
-            }
-            
-        }
+    :global {
+      .cardHeading {
+        font-size: 22px !important;
+      }
+
+      .websitePointsLabel {
+        font-size: 13px !important;
+      }
+
+      .moviesList {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      }
     }
   }
-  
+
+  .movieDetails {
+    :global {
+      .movieInfo > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        gap: 2px !important;
+        margin-bottom: 10px !important;
+      }
+
+      .infoLabel,
+      .infoValue,
+      .moviePlot {
+        font-size: 14px !important;
+      }
+    }
+  }
+}

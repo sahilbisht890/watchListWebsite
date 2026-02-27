@@ -12,11 +12,11 @@ const MovieDetails = () => {
   const { imdbID } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { userEmail} = useGlobalContext();
+  const { userKey} = useGlobalContext();
 
   
  const [isModalVisible, setIsModalVisible] = useState(false);
- const [buttonText, setButtonText] = useState("logIn");
+ const [buttonText, setButtonText] = useState("unlock");
  const [isWatchListModalOpen, setIsWatchListModalOpen] = useState(false);
  const [selectedMovie , setSelectedMovie] = useState({});
 
@@ -37,7 +37,7 @@ const MovieDetails = () => {
   }, [imdbID]);
 
   const handleBookmarkClick = ( ) => {
-    if(!userEmail){
+    if(!userKey){
       setIsModalVisible(true);
     }else {
       setIsWatchListModalOpen(true);
@@ -81,6 +81,7 @@ const MovieDetails = () => {
                     height={"100%"}
                     width={"100%"}
                     alt={movieDetails?.Title}
+                    fallback={`${process.env.PUBLIC_URL}/images/icons8-video-100.png`}
                   />
                 )}
                 <div className="bookmarkIcon" onClick={handleBookmarkClick}>

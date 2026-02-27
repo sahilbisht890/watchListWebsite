@@ -2,7 +2,7 @@ import {Modal , Form, Button, Input} from 'antd';
 import { createWatchList } from '../utilis/index.';
 
 
-const WatchListForm = ({isFormModalOpen , setIsFormModalOpen , userEmail , updateContent,setUpdateContent}) => {
+const WatchListForm = ({isFormModalOpen , setIsFormModalOpen , userKey , updateContent,setUpdateContent}) => {
 
     const handleCloseFormModal  = () => {
         setIsFormModalOpen(false);
@@ -10,7 +10,7 @@ const WatchListForm = ({isFormModalOpen , setIsFormModalOpen , userEmail , updat
     const handleCreateWatchList = (values) => {
         const title  = values.watchListName ;
         const about = values.about;
-        const createTemp = createWatchList(userEmail , title , about);
+        const createTemp = createWatchList(userKey , title , about);
         if(createTemp){
           handleCloseFormModal();
           setUpdateContent(updateContent+1);
@@ -22,6 +22,7 @@ const WatchListForm = ({isFormModalOpen , setIsFormModalOpen , userEmail , updat
         open={isFormModalOpen}
         onCancel={handleCloseFormModal}
         footer={null}
+        width={520}
       >
         <Form
           layout="vertical"
@@ -38,6 +39,7 @@ const WatchListForm = ({isFormModalOpen , setIsFormModalOpen , userEmail , updat
               }            name="watchListName"
             rules={[
               { required: true, message: 'Please enter a watchlist title!' },
+              { min: 2, message: 'Title should be at least 2 characters.' },
             ]}
           >
             <Input placeholder="Enter watchlist title" />

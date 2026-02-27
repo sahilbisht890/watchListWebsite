@@ -1,46 +1,103 @@
 .watchListContainer {
-overflow-y: scroll;
-height: 23rem;
-    :global {
-        .createText{
-            font-size: 16px !important;
-        }
-        .ant-card-meta-description{
-            overflow: hidden !important;
-            white-space: nowrap !important;
-            text-overflow: ellipsis !important
-        }
-        .ant-card {
-            height: 160px !important;
-        }
+  overflow-y: auto;
+  height: 23rem;
+  padding: 6px 2px;
 
+  :global {
+    .ant-modal-title {
+      font-size: 20px !important;
     }
+
+    .createText {
+      font-size: 15px !important;
+    }
+
+    .ant-card-meta-description {
+      overflow: hidden !important;
+      white-space: nowrap !important;
+      text-overflow: ellipsis !important;
+      color: #8c9ab4 !important;
+    }
+
+    .ant-card-meta-title {
+      color: #e6edf7 !important;
+    }
+
+    .ant-card {
+      height: 170px !important;
+      background: linear-gradient(150deg, rgba(58, 74, 98, 0.98), rgba(46, 60, 82, 0.98)) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      border-radius: 18px !important;
+      box-shadow: 0 12px 28px rgba(6, 10, 20, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .ant-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px rgba(6, 10, 20, 0.45);
+    }
+
+    .ant-card-meta-title {
+      font-size: 16px !important;
+      text-align: center;
+    }
+  }
 }
 
 .sidebarWatchListContainer {
-    :global {
-      .watchListDiv {
-        white-space: normal;
-        text-overflow: unset;
-        overflow: visible;
-        color: rgb(167, 9, 9);
-        border: 1px solid rgb(167, 9, 9);
-        background-color: rgb(217, 215, 215);
-        height: auto;
-      }
-      .watchlistHeading{
-        border-bottom: 1px solid lightgray;
-      }
-  
-      .watchListContainerDiv {
-        overflow-y: auto;
-        height: 80% !important;
-        cursor: pointer;
-      }
-      .watchListDiv:hover{
-        color: white !important;
-        background-color:rgb(167, 9, 9) ;
-      }
+  :global {
+    .watchListPanel {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 10px;
+    }
+
+    .watchListDiv {
+      white-space: normal;
+      text-overflow: unset;
+      overflow: visible;
+      color: #ffb299;
+      border: 1px solid rgba(255, 138, 91, 0.35);
+      background: linear-gradient(150deg, rgba(255, 138, 91, 0.14), rgba(255, 138, 91, 0.05));
+      border-radius: 12px;
+      height: auto;
+      padding: 8px 10px;
+      letter-spacing: 0.1px;
+      transition: all 0.2s ease;
+    }
+
+    .watchlistHeading {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e6edf7;
+      padding-bottom: 6px;
+    }
+
+    .watchListContainerDiv {
+      overflow-y: auto;
+      height: 80% !important;
+      cursor: pointer;
+    }
+
+    .watchListDiv:hover {
+      color: #0b0f1a !important;
+      background: rgba(255, 178, 153, 0.95);
+      border-color: rgba(255, 178, 153, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(255, 138, 91, 0.25);
+    }
+
+    .watchListDiv::before {
+      content: "•";
+      margin-right: 6px;
+      color: rgba(255, 178, 153, 0.8);
     }
   }
-  
+}
+
+@media (max-width: 768px) {
+  .watchListContainer {
+    height: auto;
+    max-height: 16rem;
+  }
+}
