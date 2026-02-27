@@ -1,65 +1,67 @@
-# This project is hosted at 
-https://sahilbisht890.github.io/watchListWebsite/
+# Movie Watchlist Website
 
-Here’s a description of your project:  
+A React app for searching movies, viewing detailed metadata, and organizing personal watchlists.
 
----
+## Live Demo
+- https://sahilbisht890.github.io/watchListWebsite/
 
-### **Movie Watchlist Application**  
+## Features
+- Search movies from OMDb with pagination
+- View movie details (plot, ratings, metadata)
+- Create a local account (email-based key)
+- Create multiple watchlists per user
+- Add and remove movies from watchlists
+- Quick watchlist navigation from sidebar
 
-The Movie Watchlist Application is a dynamic and interactive platform designed to help users explore movies and organize their watchlists efficiently.  
+## Tech Stack
+- React 18 (Create React App)
+- React Router
+- Axios
+- Ant Design + Bootstrap
+- Sass
+- react-hot-toast
 
-#### **Key Features**  
+## Prerequisites
+- Node.js 18+ (or current LTS)
+- npm
 
-1. **Movie Search and Details View**  
-   - Users can search for their favorite movies using a search bar.  
-   - Upon selecting a movie, a detailed view provides comprehensive information about the movie, such as its title, release date, synopsis, genre, and ratings.  
+## Environment Variables
+Create a `.env` file in the project root:
 
-2. **User Authentication**  
-   - Users can log in securely using their email.  
-   - Authentication enables personalized experiences, such as maintaining unique watchlists for each user.  
+```env
+REACT_APP_MOVIE_API=https://www.omdbapi.com/?apikey=YOUR_OMDB_API_KEY
+```
 
-3. **Watchlist Management**  
-   - Users can create multiple watchlists based on their preferences (e.g., "Action Movies," "Weekend Picks").  
-   - Each movie can be added to one or more watchlists, allowing for easy organization.  
+Get an API key from OMDb: https://www.omdbapi.com/apikey.aspx
 
-4. **Sidebar Navigation**  
-   - The sidebar displays a list of all the watchlists the user has created.  
-   - This ensures quick navigation between different watchlists.  
+## Run Locally
+```bash
+npm install
+npm start
+```
 
-5. **Watchlist Filtering**  
-   - Users can filter their watchlists by name to locate a specific one quickly.  
-   - The intuitive filtering system ensures a seamless user experience.  
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Open: http://localhost:3000
 
 ## Available Scripts
+- `npm start` - Run in development mode
+- `npm run build` - Create production build in `build/`
+- `npm test` - Run test suite
+- `npm run deploy` - Deploy `build/` to GitHub Pages
 
-In the project directory, you can run:
+## Data Storage Notes
+- User keys and watchlists are stored in browser `localStorage`.
+- This is client-side only and not secure authentication.
 
-### `npm start`
+## Screenshots
+Initial search page:
+![Home](https://github.com/user-attachments/assets/14f113f7-7fcf-4966-b1cc-895416944590)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Movie details page:
+![Details](https://github.com/user-attachments/assets/5ef6eea8-1492-4eb5-9107-23bcf1b3630e)
 
-# This is the initial paege , you can search the movie and change page too.
-![Screenshot (4)](https://github.com/user-attachments/assets/14f113f7-7fcf-4966-b1cc-895416944590)
+Login/sign-up modal:
+![Login](https://github.com/user-attachments/assets/b6ff1b70-6d11-44e0-81e8-3d826a9757dd)
 
-# This is the details page , you can click on the movie name to open the details of the movie 
-![Screenshot (5)](https://github.com/user-attachments/assets/5ef6eea8-1492-4eb5-9107-23bcf1b3630e)
-# this is for the login and signup
-![Screenshot (6)](https://github.com/user-attachments/assets/b6ff1b70-6d11-44e0-81e8-3d826a9757dd)
-
-# you can select the watch list from the sidebar and open the movie list 
-![Screenshot (7)](https://github.com/user-attachments/assets/5b8e5803-a609-46e6-af3c-4a479dd6f1b6)
-![Screenshot (8)](https://github.com/user-attachments/assets/952b91d4-f528-41f9-82db-6ccce2a309df)
-
-
-
-
-
-
-
-
+Watchlist views:
+![Watchlist 1](https://github.com/user-attachments/assets/5b8e5803-a609-46e6-af3c-4a479dd6f1b6)
+![Watchlist 2](https://github.com/user-attachments/assets/952b91d4-f528-41f9-82db-6ccce2a309df)
