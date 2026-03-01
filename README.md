@@ -53,15 +53,18 @@ Open: http://localhost:3000
 - This is client-side only and not secure authentication.
 
 ## Screenshots
-Initial search page:
-![Home](https://github.com/user-attachments/assets/14f113f7-7fcf-4966-b1cc-895416944590)
+<img width="1919" height="863" alt="Screenshot 2026-02-27 221217" src="https://github.com/user-attachments/assets/80cc8523-9c3f-4e18-9381-95b653872568" />
+<img width="1919" height="867" alt="Screenshot 2026-02-27 221232" src="https://github.com/user-attachments/assets/0d9da7af-0af2-46a0-b3d3-7c7c47786e14" />
+<img width="1917" height="864" alt="Screenshot 2026-02-27 221411" src="https://github.com/user-attachments/assets/e0d32f40-3687-4648-b4b5-c7d7f5893c88" />
+<img width="1919" height="867" alt="Screenshot 2026-02-27 221246" src="https://github.com/user-attachments/assets/e082c82c-4be2-4169-bab0-5a6512b4db00" />
+<img width="1919" height="869" alt="Screenshot 2026-02-27 221350" src="https://github.com/user-attachments/assets/3d142272-5149-4e41-83c0-fdb64729fc5a" />
+<img width="1919" height="859" alt="Screenshot 2026-02-27 221420" src="https://github.com/user-attachments/assets/9aa09b02-7e63-43f8-b924-658536d1fffc" />
+<img width="1919" height="861" alt="Screenshot 2026-02-27 221443" src="https://github.com/user-attachments/assets/379c6931-4ded-4e9e-bf80-9bfbdd34908e" />
 
-Movie details page:
-![Details](https://github.com/user-attachments/assets/5ef6eea8-1492-4eb5-9107-23bcf1b3630e)
 
-Login/sign-up modal:
-![Login](https://github.com/user-attachments/assets/b6ff1b70-6d11-44e0-81e8-3d826a9757dd)
 
-Watchlist views:
-![Watchlist 1](https://github.com/user-attachments/assets/5b8e5803-a609-46e6-af3c-4a479dd6f1b6)
-![Watchlist 2](https://github.com/user-attachments/assets/952b91d4-f528-41f9-82db-6ccce2a309df)
+
+
+
+
+
