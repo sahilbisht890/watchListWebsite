@@ -58,10 +58,12 @@ const MovieCard = ({ movieData , view='normallist' , index, handleRemoveMovie}) 
   }
 
   const shareUrl = () => {
-    if (typeof window !== "undefined") {
-      return `${window.location.origin}${window.location.pathname}#/`;
+    if (typeof window === "undefined") {
+      return "";
     }
-    return "";
+
+    const moviePath = movieData?.imdbID ? `#/details/${movieData.imdbID}` : "#/";
+    return `${window.location.origin}${window.location.pathname}${moviePath}`;
   };
 
   const handleShare = (type) => {
