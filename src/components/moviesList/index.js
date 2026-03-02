@@ -6,51 +6,55 @@ import { IconSearch, IconDeviceTvFilled, IconShare} from "@tabler/icons-react";
 import { FaWhatsapp, FaFacebookF, FaLink, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { fetchMovies } from "../utilis/index..js";
 import { toast } from "react-hot-toast";
+import { useSearchParams } from "react-router-dom";
 
 
 const { Search } = Input;
 const MovieListPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialSearch = (searchParams.get("q") || "Batman").trim() || "Batman";
+  const initialPageParam = Number(searchParams.get("page"));
+  const initialPage = Number.isFinite(initialPageParam) && initialPageParam > 0 ? initialPageParam : 1;
   const searchRef = useRef(null);
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("Batman");
+  const [page, setPage] = useState(initialPage);
+  const [search, setSearch] = useState(initialSearch);
+  const [searchInputValue, setSearchInputValue] = useState(initialSearch);
   const [moviesList, setMovieList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [totalMovieList, setTotalMovieList] = useState(0);
   const [isShareOpen, setIsShareOpen] = useState(false);
 
   useEffect(() => {
+    let isCancelled = false;
+    setLoading(true);
     fetchMovies(search, page).then((movies) => {
+      if (isCancelled) {
+        return;
+      }
       setMovieList(movies.data);
       setTotalMovieList(movies.total);
       setLoading(false);
     });
-  }, []);
+    return () => {
+      isCancelled = true;
+    };
+  }, [search, page]);
 
   const handleButtonClick = () => {
     searchRef.current?.focus();
   };
 
-  const handleMovieSearch = (searchValue) => {
+  const handleMovieSearch = (inputValue) => {
+    const normalizedSearch = (inputValue || "").trim() || "Batman";
+    setSearch(normalizedSearch);
+    setSearchInputValue(normalizedSearch);
     setPage(1);
-    if (searchValue === "") {
-      searchValue = "Batman"; //as the api doesnt give the movies randomly
-    }
-    setLoading(true);
-    fetchMovies(searchValue, 1).then((movies) => {
-      setMovieList(movies.data);
-      setTotalMovieList(movies.total);
-      setLoading(false);
-      setSearch(searchValue);
-    });
+    setSearchParams({ q: normalizedSearch, page: "1" });
   };
 
-  const handlePageChange = (page) => {
-    setLoading(true);
-    setPage(page);
-    fetchMovies(search, page).then((movies) => {
-      setMovieList(movies.data);
-      setLoading(false);
-    });
+  const handlePageChange = (nextPage) => {
+    setPage(nextPage);
+    setSearchParams({ q: search, page: String(nextPage) });
   };
 
   const shareUrl = () => {
@@ -146,6 +150,8 @@ const MovieListPage = () => {
             allowClear
             enterButton="Search"
             size="large"
+            value={searchInputValue}
+            onChange={(event) => setSearchInputValue(event.target.value)}
             onSearch={handleMovieSearch}
           />
         </div>

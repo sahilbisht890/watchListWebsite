@@ -353,10 +353,16 @@ body {
 }
 
 .modalOptionBelow {
+  color: var(--accent-soft) !important;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
   cursor: pointer !important;
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .modalOptionBelow:hover {
+  color: #fff4ee !important;
   transform: scale(1.05);
 }
 
